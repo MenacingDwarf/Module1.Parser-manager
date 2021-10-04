@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup, Tag
 
-def info_extract(isoup):
+
+def info_extract(path):
+    with open(path, 'r', encoding='utf-8') as input_file:
+        text = input_file.read()
+    isoup = BeautifulSoup(text, features="lxml")
     tlist = []
     def info_extract_helper(inlist, count = 0):
         if(isinstance(inlist, list)):
@@ -13,11 +17,8 @@ def info_extract(isoup):
                     if(extracted_str and (count > 1)):
                         tlist.append(extracted_str)
     info_extract_helper([isoup])
-    return tlist
+    return '\n'.join(tlist)
 
 
 if __name__ == '__main__':
-    with open('articles/409424.html', 'r', encoding='utf-8') as input_file:
-        text = input_file.read()
-    text = BeautifulSoup(text)
-    print(info_extract(text))
+    print(info_extract('articles/576194.html'))
