@@ -21,4 +21,4 @@ def info_extract(path):
 
 
 if __name__ == '__main__':
-    print(info_extract('articles/576194.html'))
+    print(info_extract('examples/576194.html'))
